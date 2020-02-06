@@ -1,13 +1,23 @@
 package kr.co.first.gotoeat.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Restaurant
 {
+    @Id
+    @GeneratedValue
+    private int id;
+
     private String name;
     private String location;
-    private int id;
+
+    @Transient
     private List<MenuItem> menuItems = new ArrayList<MenuItem>();
 
     public Restaurant(){};

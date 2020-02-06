@@ -1,12 +1,15 @@
 package kr.co.first.gotoeat.domain;
 
-import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 
-public interface RestaurantRepository
+import java.util.List;
+import java.util.Optional;
+
+public interface RestaurantRepository extends CrudRepository<Restaurant, Integer>
 {
     List<Restaurant> findAll();
 
-    Restaurant findById(int id);
+    Optional<Restaurant> findById(int id);
 
     Restaurant save(Restaurant restaurant);
 }

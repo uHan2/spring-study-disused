@@ -11,6 +11,7 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -52,7 +53,7 @@ public class RestaurantServiceTest
         restaurants.add(restaurant);
         given(restaurantRepository.findAll()).willReturn(restaurants);
 
-        given(restaurantRepository.findById(1004)).willReturn(restaurant);
+        given(restaurantRepository.findById(1004)).willReturn(Optional.of(restaurant));
     }
 
     @Test

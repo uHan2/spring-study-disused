@@ -1,9 +1,11 @@
 package kr.co.first.gotoeat.domain;
 
+import org.springframework.data.repository.CrudRepository;
+
 import java.util.List;
 
 
-public interface MenuItemRepository
+public interface MenuItemRepository extends CrudRepository<MenuItem, Integer>
 {
-    List<MenuItem> findAllByRestaurantId(int restaurantId);
+    List<MenuItem> findAllByRestaurantId(long restaurantId);
 }
