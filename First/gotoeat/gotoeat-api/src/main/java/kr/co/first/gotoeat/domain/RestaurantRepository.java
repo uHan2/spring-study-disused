@@ -7,4 +7,6 @@ public interface RestaurantRepository
     List<Restaurant> findAll();
 
     Restaurant findById(int id);
+
+    Restaurant save(Restaurant restaurant);
 }

@@ -5,10 +5,18 @@ import java.util.List;
 
 public class Restaurant
 {
-    private final String name;
-    private final String location;
-    private final int id;
+    private String name;
+    private String location;
+    private int id;
     private List<MenuItem> menuItems = new ArrayList<MenuItem>();
+
+    public Restaurant(){};
+
+    public Restaurant(String name, String location)
+    {
+        this.name = name;
+        this.location = location;
+    }
 
     public Restaurant(int id, String name, String location)
     {
@@ -19,8 +27,12 @@ public class Restaurant
 
     public int getId()
     {
-
         return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
     }
 
     public String getName()
