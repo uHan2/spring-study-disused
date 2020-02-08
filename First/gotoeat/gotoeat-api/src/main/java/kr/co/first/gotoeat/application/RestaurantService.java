@@ -1,9 +1,13 @@
 package kr.co.first.gotoeat.application;
 
-import kr.co.first.gotoeat.domain.*;
+import kr.co.first.gotoeat.domain.MenuItem;
+import kr.co.first.gotoeat.domain.MenuItemRepository;
+import kr.co.first.gotoeat.domain.Restaurant;
+import kr.co.first.gotoeat.domain.RestaurantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -42,5 +46,15 @@ public class RestaurantService
     public Restaurant addRestaurant(Restaurant restaurant)
     {
         return restaurantRepository.save(restaurant);
+    }
+
+    @Transactional
+    public Restaurant updateRestaurant(int id, String name, String lcoation)
+    {
+        Restaurant restaurant = restaurantRepository.findById(id).orElse(null);
+
+        restaurant.updateInformation(name, lcoation);
+
+        return restaurant;
     }
 }
