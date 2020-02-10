@@ -1,7 +1,7 @@
 package kr.co.first.gotoeat.interfaces;
 
 import kr.co.first.gotoeat.application.RestaurantService;
-import kr.co.first.gotoeat.domain.*;
+import kr.co.first.gotoeat.domain.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,18 +29,20 @@ public class RestaurantController
     public Restaurant detail(@PathVariable("id") int id)
     {
         Restaurant restaurant = restaurantService.getRestaurant(id);
-        
+
         return restaurant;
     }
 
     @PostMapping("/restaurants")
     public ResponseEntity<?> create(@RequestBody Restaurant resource) throws URISyntaxException
     {
-        String name = resource.getName();
-        String address = resource.getLocation();
 
-        Restaurant restaurant = new Restaurant(1234, name, address);
-        restaurantService.addRestaurant(restaurant);
+        Restaurant restaurant = restaurantService.addRestaurant(
+                Restaurant.builder()
+                        .name(resource.getName())
+                        .location(resource.getLocation())
+                        .build());
+
 
         URI location = new URI("/restaurants/" + restaurant.getId());
         return ResponseEntity.created(location).body("{}");
@@ -52,6 +54,6 @@ public class RestaurantController
         String name = resource.getName();
         String location = resource.getLocation();
         restaurantService.updateRestaurant(id, name, location);
-        return "{}" ;
+        return "{}";
     }
 }
