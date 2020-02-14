@@ -3,6 +3,7 @@ package kr.co.first.gotoeat.interfaces;
 import kr.co.first.gotoeat.application.RestaurantService;
 import kr.co.first.gotoeat.domain.MenuItem;
 import kr.co.first.gotoeat.domain.Restaurant;
+import kr.co.first.gotoeat.domain.RestaurantNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,7 +54,7 @@ public class RestaurantControllerTest
     }
 
     @Test
-    public void detail() throws Exception
+    public void detailWithExisted() throws Exception
     {
         Restaurant restaurant1 = Restaurant.builder()
                 .id(1004)
@@ -90,7 +91,19 @@ public class RestaurantControllerTest
     }
 
     @Test
-    public void create() throws Exception
+    public void detailWithNotExisted() throws Exception
+    {
+        given(restaurantService.getRestaurant(404))
+                .willThrow(new RestaurantNotFoundException(404));
+
+        mvc.perform(get("/restaurants/404"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().string("{}"));
+
+    }
+
+    @Test
+    public void createWithValidData() throws Exception
     {
         given(restaurantService.addRestaurant(any())).will(invocation ->
         {
@@ -113,14 +126,32 @@ public class RestaurantControllerTest
     }
 
     @Test
-    public void update() throws Exception
+    public void createWithInValidData() throws Exception
     {
+        mvc.perform(post("/restaurants")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"name\":\"\", \"address\":\"\"}"))
+                .andExpect(status().isBadRequest());
+    }
 
+    @Test
+    public void updateWithValidData() throws Exception
+    {
         mvc.perform(patch("/restaurants/1004")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{\"name\":\"JOKER Bar\", \"location\":\"Busan\"}"))
                 .andExpect(status().isOk());
 
         verify(restaurantService).updateRestaurant(1004, "JOKER Bar", "Busan");
+    }
+
+    @Test
+    public void updateWithoutName() throws Exception
+    {
+
+        mvc.perform(patch("/restaurants/1004")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"name\":\"\", \"location\":\"Busan\"}"))
+                .andExpect(status().isBadRequest());
     }
 }
