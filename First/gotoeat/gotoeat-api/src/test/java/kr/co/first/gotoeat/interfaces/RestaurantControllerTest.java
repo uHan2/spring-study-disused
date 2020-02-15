@@ -109,7 +109,7 @@ public class RestaurantControllerTest
         {
             Restaurant restaurant = invocation.getArgument(0);
             return Restaurant.builder()
-                    .id(1004)
+                    .id(1234)
                     .name(restaurant.getName())
                     .location(restaurant.getLocation())
                     .build();
@@ -117,20 +117,20 @@ public class RestaurantControllerTest
 
         mvc.perform(post("/restaurants")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"name\":\"BeRyong\", \"address\":\"Busan\"}"))
+                .content("{\"name\":\"BeRyong\", \"location\":\"Busan\"}"))
                 .andExpect(status().isCreated())
-                .andExpect(header().string("location", "/restaurants/1004"))
+                .andExpect(header().string("location", "/restaurants/1234"))
                 .andExpect(content().string("{}"));
 
         verify(restaurantService).addRestaurant(any());
     }
 
     @Test
-    public void createWithInValidData() throws Exception
+    public void createWithInvalidData() throws Exception
     {
         mvc.perform(post("/restaurants")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"name\":\"\", \"address\":\"\"}"))
+                .content("{\"name\":\"\", \"location\":\"\"}"))
                 .andExpect(status().isBadRequest());
     }
 
