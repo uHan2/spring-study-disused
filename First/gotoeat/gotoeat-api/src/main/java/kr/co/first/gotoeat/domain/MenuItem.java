@@ -1,13 +1,12 @@
 package kr.co.first.gotoeat.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 @Getter
@@ -20,7 +19,13 @@ public class MenuItem
     @GeneratedValue
     private long id;
 
+    @Setter
     private long restaurantId;
 
     private String name;
+
+    @Transient
+    @JsonInclude(JsonInclude.Include.NON_DEFAULT)
+    private boolean destroy;
+
 }

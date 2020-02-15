@@ -67,15 +67,15 @@ public class RestaurantServiceTest
         List<Restaurant> restaurants = restaurantService.getRestaurants();
 
         Restaurant restaurant = restaurants.get(0);
-        assertThat(restaurant.getId(), is(1004));
+        assertThat(restaurant.getId(), is(1004L));
     }
 
     @Test
     public void getRestaurantWithExisted()
     {
-        Restaurant restaurant = restaurantService.getRestaurant(1004);
+        Restaurant restaurant = restaurantService.getRestaurant(1004L);
 
-        assertThat(restaurant.getId(), is(1004));
+        assertThat(restaurant.getId(), is(1004L));
 
         MenuItem menuitem = restaurant.getMenuItems().get(0);
 
@@ -86,7 +86,7 @@ public class RestaurantServiceTest
     public void getRestaurantWithNotExisted() throws RestaurantNotFoundException
     {
         Assertions.assertThrows(RestaurantNotFoundException.class,
-                () -> restaurantService.getRestaurant(404));
+                () -> restaurantService.getRestaurant(404L));
 
 
     }
@@ -110,7 +110,7 @@ public class RestaurantServiceTest
 
         Restaurant created = restaurantService.addRestaurant(restaurant);
 
-        assertThat(created.getId(), is(1234));
+        assertThat(created.getId(), is(1234L));
     }
 
 
@@ -118,14 +118,14 @@ public class RestaurantServiceTest
     public void updateRestaurant()
     {
         Restaurant restaurant = Restaurant.builder()
-                .id(1004)
+                .id(1004L)
                 .name("Bob zip")
                 .location("Seoul")
                 .build();
 
-        given(restaurantRepository.findById(1004)).willReturn(Optional.of(restaurant));
+        given(restaurantRepository.findById(1004L)).willReturn(Optional.of(restaurant));
 
-        restaurantService.updateRestaurant(1004, "Sul zip", "Busan");
+        restaurantService.updateRestaurant(1004L, "Sul zip", "Busan");
 
         assertThat(restaurant.getName(), is("Sul zip"));
         assertThat(restaurant.getLocation(), is("Busan"));

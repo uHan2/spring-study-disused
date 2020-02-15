@@ -40,7 +40,7 @@ public class RestaurantControllerTest
     {
         List<Restaurant> restaurants = new ArrayList<>();
         restaurants.add(Restaurant.builder()
-                .id(1004)
+                .id(1004L)
                 .name("JOKER House")
                 .location("Seoul")
                 .build());
@@ -57,7 +57,7 @@ public class RestaurantControllerTest
     public void detailWithExisted() throws Exception
     {
         Restaurant restaurant1 = Restaurant.builder()
-                .id(1004)
+                .id(1004L)
                 .name("JOKER House")
                 .location("Seoul")
                 .build();
@@ -69,14 +69,14 @@ public class RestaurantControllerTest
         restaurant1.setMenuItems(Arrays.asList(menuItem));
 
         Restaurant restaurant2 = Restaurant.builder()
-                .id(2020)
+                .id(2020L)
                 .name("Cyber Food")
                 .location("Seoul")
                 .build();
 
 
-        given(restaurantService.getRestaurant(1004)).willReturn(restaurant1);
-        given(restaurantService.getRestaurant(2020)).willReturn(restaurant2);
+        given(restaurantService.getRestaurant(1004L)).willReturn(restaurant1);
+        given(restaurantService.getRestaurant(2020L)).willReturn(restaurant2);
 
         mvc.perform(get("/restaurants/1004"))
                 .andExpect(status().isOk())
@@ -93,8 +93,8 @@ public class RestaurantControllerTest
     @Test
     public void detailWithNotExisted() throws Exception
     {
-        given(restaurantService.getRestaurant(404))
-                .willThrow(new RestaurantNotFoundException(404));
+        given(restaurantService.getRestaurant(404L))
+                .willThrow(new RestaurantNotFoundException(404L));
 
         mvc.perform(get("/restaurants/404"))
                 .andExpect(status().isNotFound())
@@ -109,7 +109,7 @@ public class RestaurantControllerTest
         {
             Restaurant restaurant = invocation.getArgument(0);
             return Restaurant.builder()
-                    .id(1234)
+                    .id(1234L)
                     .name(restaurant.getName())
                     .location(restaurant.getLocation())
                     .build();
@@ -142,7 +142,7 @@ public class RestaurantControllerTest
                 .content("{\"name\":\"JOKER Bar\", \"location\":\"Busan\"}"))
                 .andExpect(status().isOk());
 
-        verify(restaurantService).updateRestaurant(1004, "JOKER Bar", "Busan");
+        verify(restaurantService).updateRestaurant(1004L, "JOKER Bar", "Busan");
     }
 
     @Test

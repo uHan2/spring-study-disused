@@ -1,5 +1,6 @@
 package kr.co.first.gotoeat.domain;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 
 import javax.persistence.Entity;
@@ -20,7 +21,7 @@ public class Restaurant
     @Id
     @GeneratedValue
     @Setter
-    private int id;
+    private long id;
 
     @NotEmpty
     private String name;
@@ -29,6 +30,7 @@ public class Restaurant
     private String location;
 
     @Transient
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<MenuItem> menuItems;
 
     public String getInformation()

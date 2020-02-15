@@ -9,7 +9,7 @@ public interface RestaurantRepository extends CrudRepository<Restaurant, Integer
 {
     List<Restaurant> findAll();
 
-    Optional<Restaurant> findById(int id);
+    Optional<Restaurant> findById(long id);
 
     Restaurant save(Restaurant restaurant);
 }

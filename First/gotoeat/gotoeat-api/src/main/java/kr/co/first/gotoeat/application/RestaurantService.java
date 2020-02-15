@@ -30,7 +30,7 @@ public class RestaurantService
         return restaurants;
     }
 
-    public Restaurant getRestaurant(int id)
+    public Restaurant getRestaurant(long id)
     {
         Restaurant restaurant = restaurantRepository.findById(id).
                 orElseThrow(() -> new RestaurantNotFoundException(id));
@@ -47,7 +47,7 @@ public class RestaurantService
     }
 
     @Transactional
-    public Restaurant updateRestaurant(int id, String name, String lcoation)
+    public Restaurant updateRestaurant(long id, String name, String lcoation)
     {
         Restaurant restaurant = restaurantRepository.findById(id).orElse(null);
 
