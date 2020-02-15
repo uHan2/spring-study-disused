@@ -1,9 +1,6 @@
 package kr.co.first.gotoeat.application;
 
-import kr.co.first.gotoeat.domain.MenuItem;
-import kr.co.first.gotoeat.domain.MenuItemRepository;
-import kr.co.first.gotoeat.domain.Restaurant;
-import kr.co.first.gotoeat.domain.RestaurantRepository;
+import kr.co.first.gotoeat.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +32,8 @@ public class RestaurantService
 
     public Restaurant getRestaurant(int id)
     {
-        Restaurant restaurant = restaurantRepository.findById(id).orElse(null);
+        Restaurant restaurant = restaurantRepository.findById(id).
+                orElseThrow(() -> new RestaurantNotFoundException(id));
 
         List<MenuItem> menuItems = menuItemRepository.findAllByRestaurantId(id);
         restaurant.setMenuItems(menuItems);

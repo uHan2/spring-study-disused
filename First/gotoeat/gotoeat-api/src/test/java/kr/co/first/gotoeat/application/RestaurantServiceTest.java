@@ -1,9 +1,7 @@
 package kr.co.first.gotoeat.application;
 
-import kr.co.first.gotoeat.domain.MenuItem;
-import kr.co.first.gotoeat.domain.MenuItemRepository;
-import kr.co.first.gotoeat.domain.Restaurant;
-import kr.co.first.gotoeat.domain.RestaurantRepository;
+import kr.co.first.gotoeat.domain.*;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -73,7 +71,7 @@ public class RestaurantServiceTest
     }
 
     @Test
-    public void getRestaurant()
+    public void getRestaurantWithExisted()
     {
         Restaurant restaurant = restaurantService.getRestaurant(1004);
 
@@ -82,6 +80,15 @@ public class RestaurantServiceTest
         MenuItem menuitem = restaurant.getMenuItems().get(0);
 
         assertThat(menuitem.getName(), is("Kimchi"));
+    }
+
+    @Test
+    public void getRestaurantWithNotExisted() throws RestaurantNotFoundException
+    {
+        Assertions.assertThrows(RestaurantNotFoundException.class,
+                () -> restaurantService.getRestaurant(404));
+
+
     }
 
     @Test

@@ -13,7 +13,7 @@ public class RestaurantErrorAdvice
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(RestaurantNotFoundException.class)
-    public String notFound()
+    public String handleNotFound()
     {
         return "{}";
     }
