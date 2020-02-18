@@ -6,7 +6,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 
-public interface MenuItemRepository extends CrudRepository<MenuItem, Integer>
+public interface MenuItemRepository extends CrudRepository<MenuItem, Long>
 {
     List<MenuItem> findAllByRestaurantId(long restaurantId);
 

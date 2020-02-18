@@ -1,9 +1,6 @@
 package kr.co.first.gotoeat.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,6 +19,9 @@ public class Review
     @Id
     @GeneratedValue
     private long id;
+
+    @Setter
+    private long restaurantId;
 
     @NotEmpty
     String name;

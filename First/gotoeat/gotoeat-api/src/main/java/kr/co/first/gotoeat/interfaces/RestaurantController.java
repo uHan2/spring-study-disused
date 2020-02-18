@@ -27,7 +27,7 @@ public class RestaurantController
     }
 
     @GetMapping("/restaurants/{id}")
-    public Restaurant detail(@PathVariable("id") int id)
+    public Restaurant detail(@PathVariable("id") long id)
     {
         Restaurant restaurant = restaurantService.getRestaurant(id);
 
