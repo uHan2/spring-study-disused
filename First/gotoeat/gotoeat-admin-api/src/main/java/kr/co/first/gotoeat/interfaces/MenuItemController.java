@@ -2,11 +2,9 @@ package kr.co.first.gotoeat.interfaces;
 
 import kr.co.first.gotoeat.application.MenuItemService;
 import kr.co.first.gotoeat.domain.MenuItem;
+import kr.co.first.gotoeat.domain.Restaurant;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,6 +13,16 @@ public class MenuItemController
 {
     @Autowired
     private MenuItemService menuItemService;
+
+    @GetMapping("/restaurants/{restaurantId}/menuitems")
+    public List<MenuItem> list(@PathVariable("restaurantId") long restaurantId)
+    {
+        List<MenuItem> menuItems = menuItemService.getMenuItems(restaurantId);
+
+        return menuItems;
+    }
+
+
 
     @PatchMapping("/restaurants/{restaurantId}/menuitems")
     public String bulkUpdate(

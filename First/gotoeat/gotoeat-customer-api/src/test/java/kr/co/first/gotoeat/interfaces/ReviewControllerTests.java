@@ -2,7 +2,6 @@ package kr.co.first.gotoeat.interfaces;
 
 import kr.co.first.gotoeat.application.ReviewService;
 import kr.co.first.gotoeat.domain.Review;
-import kr.co.first.gotoeat.interfaces.ReviewController;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
