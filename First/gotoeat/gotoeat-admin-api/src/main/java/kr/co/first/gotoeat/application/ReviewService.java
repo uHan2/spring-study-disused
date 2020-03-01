@@ -5,6 +5,8 @@ import kr.co.first.gotoeat.domain.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ReviewService
 {
@@ -17,9 +19,8 @@ public class ReviewService
         this.reviewRepository = reviewRepository;
     }
 
-    public Review addReview(Long restaurantId, Review review)
+    public List<Review> getReviews()
     {
-        review.setRestaurantId(restaurantId);
-        return reviewRepository.save(review);
+        return reviewRepository.findAll();
     }
 }
