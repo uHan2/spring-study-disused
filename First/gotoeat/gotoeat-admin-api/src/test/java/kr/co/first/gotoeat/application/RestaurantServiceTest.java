@@ -1,6 +1,8 @@
 package kr.co.first.gotoeat.application;
 
-import kr.co.first.gotoeat.domain.*;
+import kr.co.first.gotoeat.domain.Restaurant;
+import kr.co.first.gotoeat.domain.RestaurantNotFoundException;
+import kr.co.first.gotoeat.domain.RestaurantRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,9 +16,7 @@ import java.util.Optional;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.verify;
 
 public class RestaurantServiceTest
 {
