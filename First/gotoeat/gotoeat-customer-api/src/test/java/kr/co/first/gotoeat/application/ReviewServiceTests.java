@@ -1,6 +1,5 @@
 package kr.co.first.gotoeat.application;
 
-import kr.co.first.gotoeat.application.ReviewService;
 import kr.co.first.gotoeat.domain.Review;
 import kr.co.first.gotoeat.domain.ReviewRepository;
 import org.junit.jupiter.api.BeforeEach;

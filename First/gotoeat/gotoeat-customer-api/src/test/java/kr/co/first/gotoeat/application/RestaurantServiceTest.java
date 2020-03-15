@@ -1,6 +1,5 @@
 package kr.co.first.gotoeat.application;
 
-import kr.co.first.gotoeat.application.RestaurantService;
 import kr.co.first.gotoeat.domain.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
