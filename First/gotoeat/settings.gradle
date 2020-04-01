@@ -1,6 +1,0 @@
-rootProject.name = 'gotoeat'
-
-include 'gotoeat-common'
-include 'gotoeat-admin-api'
-include 'gotoeat-customer-api'
-
