@@ -85,7 +85,7 @@ class RestaurantSeriviceTest
     public void addRestaurant()
     {
         Restaurant restaurant = new Restaurant("BeRyong", "Busan");
-        Restaurant saved = new Restaurant(1234L,"BeRyong", "Busan");
+        Restaurant saved = new Restaurant(1234L, "BeRyong", "Busan");
 
         given(restaurantRepository.save(any())).willReturn(saved);
 
