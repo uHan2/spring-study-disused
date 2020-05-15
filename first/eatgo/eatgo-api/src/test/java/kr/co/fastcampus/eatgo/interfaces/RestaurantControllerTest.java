@@ -17,8 +17,7 @@ import static org.hamcrest.Matchers.containsString;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(RestaurantController.class)
@@ -75,8 +74,7 @@ class RestaurantControllerTest
     @Test
     public void create() throws Exception
     {
-        Restaurant restaurant = new Restaurant(1234L, "BeRyong", "Busan");
-
+//        Restaurant restaurant = new Restaurant(1234L, "BeRyong", "Busan");
 
         mvc.perform(post("/restaurants")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -86,5 +84,18 @@ class RestaurantControllerTest
                 .andExpect(content().string("{}"));
 
         verify(restaurantSerivice).addRestaurant(any());
+    }
+
+    @Test
+    public void update() throws Exception
+    {
+
+        mvc.perform(patch("/restaurants/1004")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("{\"name\":\"Joker Bar\", \"address\":\"Busan\"}"))
+                .andExpect(status().isOk());
+
+        verify(restaurantSerivice).updateRestaurant(1004L, "Joker Bar", "Busan");
+
     }
 }
