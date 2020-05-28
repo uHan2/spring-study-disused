@@ -18,12 +18,11 @@ public class MenuitemController
 
     @PatchMapping("/restaurants/{restaurantId}/menuitems")
     public String bulkUpdate(
-            @PathVariable("restaurantId") Long restaurantId,
+            @PathVariable("restaurantId") Long restaurantId, 
             @RequestBody List<MenuItem> menuItems
     )
     {
         menuItemService.bulkUpdate(restaurantId, menuItems);
-
-        return "";
+        return "{}";
     }
 }
