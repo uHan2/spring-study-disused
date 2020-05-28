@@ -31,7 +31,7 @@ public class Restaurant
 
     @Transient
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private List<MenuItem> menuItem
+    private List<MenuItem> menuItems;
     public String getInformation()
     {
         return name + " in " + address;
