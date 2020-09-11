@@ -23,7 +23,6 @@ class MemoryMemberRepositoryTest
     {
         Member member = new Member();
         member.setName("spring");
-
         repository.save(member);
 
         Member result = repository.findById(member.getId()).get();
