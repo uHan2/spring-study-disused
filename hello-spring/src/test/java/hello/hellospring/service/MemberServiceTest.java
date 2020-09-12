@@ -42,7 +42,7 @@ class MemberServiceTest
         Long saveId = memberService.join(member);
 
         //then
-        Member findMember = memberService.findOne(saveId).get();
+        Member findMember = memoryMemberRepository.findById(saveId).get();
         assertThat(member.getName()).isEqualTo(findMember.getName());
     }
 
