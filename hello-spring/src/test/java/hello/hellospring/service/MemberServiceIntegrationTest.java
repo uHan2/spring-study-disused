@@ -16,7 +16,6 @@ class MemberServiceIntegrationTest
 {
     @Autowired
     MemberService memberService;
-    MemberRepository memberRepository;
 
     @Test
     public void 회원가입()
@@ -29,7 +28,7 @@ class MemberServiceIntegrationTest
         Long saveId = memberService.join(member);
 
         //then
-        Member findMember = memberRepository.findById(saveId).get();
+        Member findMember = memberService.findOne(saveId).get();
         assertThat(member.getName()).isEqualTo(findMember.getName());
     }
 
