@@ -1,24 +1,19 @@
 package hellojpa;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class Member
+public class Team
 {
-
     @Id @GeneratedValue
-    @Column(name = "MEMBER_ID")
+    @Column(name = "TEAM_ID")
     private Long id;
-
-    @Column(name = "USERNAME")
     private String name;
 
-//    @Column(name = "TEAM_ID")
-//    private Long teamId;
-
-    @ManyToOne
-    @JoinColumn(name = "TEAM_ID")
-    private Team team;
+    @OneToMany(mappedBy = "team")
+    private List<Member> members = new ArrayList<Member>();
 
     public Long getId()
     {
@@ -40,13 +35,13 @@ public class Member
         this.name = name;
     }
 
-    public Team getTeam()
+    public List<Member> getMembers()
     {
-        return team;
+        return members;
     }
 
-    public void setTeam(Team team)
+    public void setMembers(List<Member> members)
     {
-        this.team = team;
+        this.members = members;
     }
 }

@@ -1,7 +1,5 @@
 package hellojpa;
 
-import org.hibernate.boot.model.source.internal.hbm.XmlElementMetadata;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -17,14 +15,26 @@ public class jpaMain
 
         try
         {
-//            Member findMember = em.find(Member.class, 1L);
+            Team team = new Team();
+            team.setName("TeamA");
+            em.persist(team);
 
-            List<Member> result = em.createQuery("select m from Member as m", Member.class).getResultList();
+            Member member = new Member();
+            member.setName("Member1");
+            member.setTeam(team);
+            em.persist(member);
 
-            for(Member member : result)
+            em.flush();
+            em.clear();
+
+            Member findMember = em.find(Member.class, member.getId());
+            List<Member> members = findMember.getTeam().getMembers();
+
+            for(Member m : members)
             {
-                System.out.println("member.name = " + member.getName());
+                System.out.println("m = " + m.getName());
             }
+
             tx.commit();
         } catch (Exception e)
         {
