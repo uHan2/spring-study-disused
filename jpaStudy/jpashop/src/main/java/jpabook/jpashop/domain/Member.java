@@ -16,8 +16,8 @@ public class Member
     private String street;
     private String zipcode;
 
-    @OneToMany(mappedBy = "member")
-    private List<Order> orders = new ArrayList<>();
+    @OneToMany(mappedBy = "member")                   //사실 멤버에서 orderList 를 갖는건 잘못 된 설계일 확률이 높음
+    private List<Order> orders = new ArrayList<>();   // ArrayList 초기화는 관례
 
     public Long getId()
     {

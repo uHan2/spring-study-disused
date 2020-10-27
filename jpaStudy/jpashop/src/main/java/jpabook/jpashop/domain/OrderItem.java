@@ -10,11 +10,17 @@ public class OrderItem
     @Column(name = "ORDER_ITEM_ID")
     private Long id;
 
-    @ManyToOne
+//    @Column(name = "ORDER_ID")    // 관계형 디비에 맞춤식
+//    private Long orderId;
+
+//    @Column(name = "ITEM_ID")    // 관계형 디비에 맞춤식
+//    private Long itemId;
+
+    @ManyToOne                  // 객체스타일
     @JoinColumn("ORDER_ID")
     private Order order;
 
-    @ManyToOne 
+    @ManyToOne                  // 객체스타일
     @JoinColumn("ITEM_ID")
     private Item item;
 

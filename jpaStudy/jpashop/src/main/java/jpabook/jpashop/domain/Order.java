@@ -14,11 +14,14 @@ public class Order
     @Column(name = "ORDER_ID")
     private Long id;
 
-    @ManyToOne
+//    @Column(name = "MEMBER_ID") //기존 관게 디비에 맞추는 식의 설계
+//    private int member_id;
+
+    @ManyToOne                      // 객체 스타일 설계
     @JoinColumn("MEMBER_ID")
     private Member member;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order")                            //orderItemList를 갖는건 비즈니스적으로 큰 가치를 갖을 확률이 높
     private List<OrderItem> orderItems = new ArrayList<>();
 
     private LocalDateTime orderDate;
@@ -26,11 +29,11 @@ public class Order
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    public void addOrderItem(OrderItem orderItem)
-    {
-        orderItems.add(orderItem);
-        orderItem.setOrder(this);
-    }
+//    public void addOrderItem(OrderItem orderItem) // 편의메소드
+//    {
+//        orderItems.add(orderItem);
+//        orderItem.setOrder(this);
+//    }
 
     public Long getId()
     {
