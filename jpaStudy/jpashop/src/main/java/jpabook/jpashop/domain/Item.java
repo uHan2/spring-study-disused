@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn
-public abstract class Item
+public abstract class Item extends BaseEntitiy
 {
     @Id
     @GeneratedValue
