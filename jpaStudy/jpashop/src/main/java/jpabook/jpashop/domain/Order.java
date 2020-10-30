@@ -18,7 +18,7 @@ public class Order
 //    private int member_id;
 
     @ManyToOne                      // 객체 스타일 설계
-    @JoinColumn("MEMBER_ID")
+    @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
     @OneToMany(mappedBy = "order")                            //orderItemList를 갖는건 비즈니스적으로 큰 가치를 갖을 확률이 높
