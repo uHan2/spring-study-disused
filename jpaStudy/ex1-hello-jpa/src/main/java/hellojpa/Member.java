@@ -14,10 +14,10 @@ public class Member
     @Column(name = "USERNAME")
     private String name;
 
-//    @Column(name = "TEAM_ID")
+//    @Column(name = "TEAM_ID") //관계형 디비에 맞춤식
 //    private Long teamId;
 
-    @ManyToOne
+    @ManyToOne                      // 객체스타일
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
