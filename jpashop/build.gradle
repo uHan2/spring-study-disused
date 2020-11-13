@@ -4,6 +4,10 @@ plugins {
 	id 'java'
 }
 
+//ext["h2.version"] = "1.4.200" //h2 데이터베이스 버전 지정
+//
+//ext["hibernate.version"] = "5.4.20.Final" //하이버네이트 버전 지정
+
 group = 'jpabook'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
