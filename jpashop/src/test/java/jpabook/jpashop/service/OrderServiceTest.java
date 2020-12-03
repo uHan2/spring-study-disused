@@ -23,7 +23,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Transactional
+@Transactional(readOnly = true)
 public class OrderServiceTest
 {
     @Autowired
