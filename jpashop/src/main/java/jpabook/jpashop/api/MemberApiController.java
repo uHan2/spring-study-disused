@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 
 @RestController
 @RequiredArgsConstructor
@@ -24,6 +25,12 @@ public class MemberApiController
         return new CreateMemberResponse(id);
     }
 
+
+    /**
+     * 엔티티를 바로 받지 말고 꼭 DTO 를 통해 받자
+     * @param request
+     * @return
+     */
     @PostMapping("/api/v2/members")
     public CreateMemberResponse saveMemberV2(@RequestBody @Valid CreateMemberRequest request)
     {
@@ -38,6 +45,7 @@ public class MemberApiController
     @Data
     static class CreateMemberRequest
     {
+        @NotEmpty
         private String name;
     }
 
