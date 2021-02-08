@@ -19,7 +19,6 @@ public class MemberApiController
 {
     private final MemberService memberService;
 
-
     /**
      * 이렇게 엔티티를 직접 노출 하면 안된다 ..
      *
