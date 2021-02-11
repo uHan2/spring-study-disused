@@ -2,6 +2,7 @@ package com.example.adminstudy.repository;
 
 import com.example.adminstudy.AdminStudyApplicationTests;
 import com.example.adminstudy.model.entity.User;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,67 +18,41 @@ class UserRepositoryTest extends AdminStudyApplicationTests
     private UserRepository userRepository;
 
     @Test
+    @Order(1)
     void create()
     {
-        User user = new User();
-        user.setAccount("testID");
-        user.setEmail("test@test.com");
-        user.setPhoneNumber("010-test-test");
-        user.setCreatedAt(LocalDateTime.now());
-        user.setCreatedBy("testAdmin");
+        String account = "Test01";
+        String password = "Test01";
+        String status = "registered";
+        String email = "test01@gmail.com";
+        String phoneNumber = "010-test-test";
+        LocalDateTime registeredAt = LocalDateTime.now();
+        LocalDateTime createdAt = LocalDateTime.now();
+        String createdBy = "AdminServer";
 
-        User saveUser = userRepository.save(user);
-        System.out.println("saveUser = " + saveUser);
+        User user = new User();
+
+        user.setAccount(account);
+        user.setPassword(password);
+        user.setStatus(status);
+        user.setEmail(email);
+        user.setPhoneNumber(phoneNumber);
+        user.setRegisteredAt(registeredAt);
+        user.setCreatedAt(createdAt);
+        user.setCreatedBy(createdBy);
+
+        User newUser = userRepository.save(user);
+
+        assertThat(newUser).isNotNull();
     }
 
     @Test
-    @Transactional
+    @Order(2)
     void read()
     {
-        Optional<User> user = userRepository.findById(1L);
+        User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-test-test");
 
-        user.ifPresent(findUser ->
-        {
-            findUser.getOrderDetailList().stream().forEach(detail ->
-            {
-                System.out.println("@@@@ :: " + detail.getId());
-            });
-        });
+        assertThat(user).isNotNull();
     }
 
-    @Test
-    @Transactional
-    void update()
-    {
-        Optional<User> user = userRepository.findById(9L);
-
-        user.ifPresent(findUser ->
-        {
-            System.out.println("before findUser = " + findUser);
-            findUser.setAccount("updateAccount");
-            findUser.setUpdatedAt(LocalDateTime.now());
-            findUser.setUpdatedBy("updateTest");
-
-            System.out.println("after findUser = " + findUser);
-        });
-
-    }
-
-    @Test
-    @Transactional
-    void delete()
-    {
-        Optional<User> user = userRepository.findById(1L);
-
-        assertThat(user.isPresent()).isTrue();
-
-        user.ifPresent(findUser ->
-        {
-            userRepository.delete(findUser);
-        });
-
-        Optional<User> deleteUser = userRepository.findById(1L);
-
-        assertThat(deleteUser.isPresent()).isFalse();
-    }
 }
