@@ -11,7 +11,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CategoryRepositoryTest extends AdminStudyApplicationTests
+class CategoryRepositoryTest extends AdminStudyApplicationTests
 {
     @Autowired
     private CategoryRepository categoryRepository;
@@ -49,7 +49,7 @@ public class CategoryRepositoryTest extends AdminStudyApplicationTests
         Optional<Category> optionalCategory = categoryRepository.findByType("Computer");
 
 
-        optionalCategory.ifPresent(c->
+        optionalCategory.ifPresent(c ->
         {
             assertThat(c.getType()).isEqualTo(type);
         });
