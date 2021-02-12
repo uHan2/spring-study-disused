@@ -5,10 +5,8 @@ import com.example.adminstudy.model.entity.User;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -46,13 +44,34 @@ class UserRepositoryTest extends AdminStudyApplicationTests
         assertThat(newUser).isNotNull();
     }
 
+    /**
+     * LazyInitializationException 빌생. 아마 데이터를 제대로 셋팅하고 테스트 해야할듯
+     */
     @Test
     @Order(2)
     void read()
     {
-        User user = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-test-test");
+        User findUser = userRepository.findFirstByPhoneNumberOrderByIdDesc("010-test-test");
 
-        assertThat(user).isNotNull();
+        if (findUser != null)
+        {
+            findUser.getOrderGroupList().forEach((orderGroup ->
+            {
+                System.out.println("orderGroup.getT = " + orderGroup.getTotalPrice());
+                System.out.println("orderGroup.getRevAddress() = " + orderGroup.getRevAddress());
+                System.out.println("orderGroup.getTotalQuantity() = " + orderGroup.getTotalQuantity());
+
+                orderGroup.getOrderDetailList().forEach(orderDetail ->
+                {
+                    System.out.println("orderDetail.getStatus() = " + orderDetail.getStatus());
+                    System.out.println("orderDetail.getArrivalDate() = " + orderDetail.getArrivalDate());
+                });
+
+            }));
+        }
+
+
+        assertThat(findUser).isNotNull();
     }
 
 }

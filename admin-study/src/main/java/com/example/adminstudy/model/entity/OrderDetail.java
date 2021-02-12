@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = {"orderGroup"})
 public class OrderDetail
 {
     @Id
@@ -32,4 +33,8 @@ public class OrderDetail
 
     private LocalDateTime updatedAt;
     private String updatedBy;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "order_group_id")
+    private OrderGroup orderGroup;
 }
