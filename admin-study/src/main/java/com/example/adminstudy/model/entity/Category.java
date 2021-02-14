@@ -3,17 +3,17 @@ package com.example.adminstudy.model.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@ToString(exclude = "partnerList")
 public class Category
 {
     @Id
@@ -29,4 +29,7 @@ public class Category
 
     private LocalDateTime updatedAt;
     private String updatedBy;
+
+    @OneToMany(mappedBy = "category")
+    private List<Partner> partnerList;
 }

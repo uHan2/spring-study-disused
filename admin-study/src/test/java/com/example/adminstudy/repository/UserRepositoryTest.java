@@ -63,6 +63,10 @@ class UserRepositoryTest extends AdminStudyApplicationTests
 
                 orderGroup.getOrderDetailList().forEach(orderDetail ->
                 {
+                    System.out.println("orderDetail.getItem().getPartner().getName() = " + orderDetail.getItem().getPartner().getName());
+                    System.out.println("orderDetail.getItem().getPartner().getCategory().getTitle() = " + orderDetail.getItem().getPartner().getCategory().getTitle());
+                    System.out.println("orderDetail.getItem().getName(); = " + orderDetail.getItem().getName());
+                    System.out.println("orderDetail.getItem().getPartner().getName() = " + orderDetail.getItem().getPartner().getCallCenter());
                     System.out.println("orderDetail.getStatus() = " + orderDetail.getStatus());
                     System.out.println("orderDetail.getArrivalDate() = " + orderDetail.getArrivalDate());
                 });
