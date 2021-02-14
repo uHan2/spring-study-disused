@@ -25,8 +25,6 @@ class UserRepositoryTest extends AdminStudyApplicationTests
         String email = "test01@gmail.com";
         String phoneNumber = "010-test-test";
         LocalDateTime registeredAt = LocalDateTime.now();
-        LocalDateTime createdAt = LocalDateTime.now();
-        String createdBy = "AdminServer";
 
         User user = new User();
 
@@ -36,8 +34,6 @@ class UserRepositoryTest extends AdminStudyApplicationTests
         user.setEmail(email);
         user.setPhoneNumber(phoneNumber);
         user.setRegisteredAt(registeredAt);
-        user.setCreatedAt(createdAt);
-        user.setCreatedBy(createdBy);
 
         User newUser = userRepository.save(user);
 

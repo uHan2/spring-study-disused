@@ -24,8 +24,6 @@ class AdminUserRepositoryTest extends AdminStudyApplicationTests
         adminUser.setPassword("test");
         adminUser.setStatus("REGISTERED");
         adminUser.setRole("SUPER");
-        adminUser.setCreatedAt(LocalDateTime.now());
-        adminUser.setCreatedBy("AdminServer");
 
         AdminUser newAdminUser = adminUserRepository.save(adminUser);
 
