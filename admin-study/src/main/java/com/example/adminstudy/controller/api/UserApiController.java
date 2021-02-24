@@ -10,7 +10,7 @@ public class UserApiController implements CrudInterface
 {
 
     @PostMapping("")
-    public Header create(@RequestBody)
+    public Header create()
     {
         return null;
     }
